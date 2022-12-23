@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- <section>
+        <img class="image_product" src="{{ object.image.url }}">
+        <div class="info">
+            <p class="title">{{ object.titulo }}</p>
+            <p class="description">{{ object.descricao }}</p>
+        </div>
+    </section> -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="left-side">
+                    <div class="items">
+                        <div class="select-image">
+                            <img src="{{ object.image.url }}" alt="">
+                        </div>
+                        
+                       <!--  <div class="thumbnails">
+                            <div class="thumbnail">
+                                <img src="{{ object.image.url }}" alt="">
+                            </div>
+                            
+                            {% for img in object.image.all %}
+                                <img src="{{ img.image.url }}" alt="">
+                            {% endfor %} -->
+                                
+                            <!-- <div class="thumbnail">
+                                <img src="{{ object.image.url }}" alt="">
+                            </div>
+
+                            <div class="thumbnail">
+                                <img src="{{ object.image.url }}" alt="">
+                            </div>
+
+                            <div class="thumbnail">
+                                <img src="{{ object.image.url }}" alt="">
+                            </div> 
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="right-side">
+                    <div class="content">
+                        <h6>TATI BIJU</h6>
+                        <h1>{{ object.titulo }}</h1>
+                        <p>{{ object.descricao }}</p>
+                        <div class="prices">
+                            <span class="price">RS {{ object.preco }}</span>
+                            <!-- <span class="off">$250.00</span> -->
+                        </div>
+                        <div class="options">
+                            <div class="amount">
+                                <div class="minus">
+                                    <img src="{% static 'img/icon-minus.svg' %}" alt="">
+                                </div>
+                                <span>0</span>
+                                <div class="plus">
+                                    <img src="{% static 'img/icon-plus.svg' %}" alt="">
+                                </div>
+                            </div>
+                            <a href="" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Add to cart</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

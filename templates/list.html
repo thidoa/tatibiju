@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Produtos</h1>
+    <div class="cards">
+        {% for obj in object_list %}
+        
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ obj.image.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ obj.titulo }}</h5>
+                  <p class="card-text">{{ obj.descricao }}</p>
+                  <h5 class="card-title">R$ {{ obj.preco }}</h5>
+                  <a href="{% url 'product_detail' obj.id %}" class="btn btn-primary">Comprar</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

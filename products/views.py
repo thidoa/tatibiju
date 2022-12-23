@@ -16,9 +16,11 @@ def product_list_view(request):
 
 def product_list_detail(request, pk):
     instance = get_object_or_404(Product, pk = pk)
+    # img = Image_product.objects.all()
+    # image = instance.image.all
     # print(dir(request.session))
     context = {
-        'object': instance
+        'object': instance,
     }
     return render(request, 'detail.html', context)
 
