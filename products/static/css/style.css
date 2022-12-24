@@ -54,11 +54,35 @@ nav ul li a {
     width: 30px;
 }
 
+.icon-avatar img {
+    width: 40px;
+}
+
+.button {
+    border-radius: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    background: #e65996;
+    border: solid 2px #e65996;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.button:hover {
+    text-decoration: none;
+    background: none;
+    color: #e65996;
+}
+
 .line {
     height: 1px;
-    background-color: #ddd;
+    background-color: #e65996;
     width: 90%;
     align-self: center;
+    opacity: .3;
 }
 
 .section {
@@ -187,10 +211,6 @@ nav ul li a {
 .button img {
     width: 14px;
 }
-
-
-
-
 
 .cards {
     display: flex;

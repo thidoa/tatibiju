@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <h1>index</h1>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Index</title>
+</head>
+<body>
+    {% include 'partials/_alerts.html' %}
+    <main>
+        {% if user.is_authenticated %}
+            <h1>Olá {{user.username}}</h1>
+        {% endif %}
+        <!-- <h1>index</h1> -->
+    </main>
     
 {% endblock %}

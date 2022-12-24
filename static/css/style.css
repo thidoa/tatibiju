@@ -1,4 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+
+/* font-family: 'Nunito Sans', sans-serif; */
+
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 85px;
+}
+
+.left-side-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.logo img {
+    width: 100px;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    padding: auto 40px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: hsl(291, 9%, 45%);
+}
+
+.right-side-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-side-menu img {
+    width: 30px;
+}
+
+.icon-avatar img {
+    width: 40px;
+}
+
+.button {
+    border-radius: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    background: #e65996;
+    border: solid 2px #e65996;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.button:hover {
+    text-decoration: none;
+    background: none;
+    color: #e65996;
+}
+
+.line {
+    height: 1px;
+    background-color: #e65996;
+    width: 90%;
+    align-self: center;
+    opacity: .3;
+}
+
+.section {
+    height: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 86px);
+    gap: 100px;
+}
+
+.items {
+    align-self: flex-end;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.select-image {
+    max-width: 500px;
+}
+
+.select-image img{
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 500px;
+    gap: 10px;
+}
+
+.thumbnail img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.right-side {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right-side h6 {
+    color: #e65996;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.right-side p {
+    color: hsl(291, 9%, 45%);
+    font-size: 14px;
+}
+
+.prices {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.off {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.options {
+    display: flex;
+    gap: 20px;
+}
+
+.amount {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #e6599669;
+    padding: 10px 20px;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.amount span {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.minus, .plus {
+    cursor: pointer;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e65996;
+    padding: 10px 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.button img {
+    width: 14px;
+}
+
+.cards {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cards .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+section {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.image_product {
+    width: 700px;
+    height: 700px;
+}
+
+.info  {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f5f8;
+    font-family: 'Nunito Sans', sans-serif;
+    border-radius: 10px;
+    border: 2px dashed red;
+    height: 40%;
+}
+
+.info .title {
+    font-weight: 900;
+    font-size: 2em;
+
+    padding: 10px;
+} 
+
+.info .description {
+    padding: 10px;
 }

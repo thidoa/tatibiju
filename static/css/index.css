@@ -1,0 +1,6 @@
+{% load static %}
+body {
+    background-image: url({% static 'img/joalheiro.png' %});
+
+    height: 100vh;
+}

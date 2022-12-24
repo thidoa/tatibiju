@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'site.css' %}"> -->
+    <title>Cadastro</title>
+</head>
+<body>
+    {% include 'partials/_alerts.html' %}
+    <div class="forms">
+        <h1>Criar conta</h1>
+        <form action="{% url 'cadastro' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <select name="tipo">
+                <option value="Cliente">Cliente</option>
+                <option value="Gerente">Gerente</option>
+            </select>
+            <span class="passwords">
+                <input type="password" name="password" placeholder="Digite sua senha" required>
+                <input type="password" name="verification_password" placeholder="Confirme a senha" required>
+            </span>
+            <div class="buttons">
+                <button type="submit">Criar conta</button>
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,7 +1,9 @@
 from multiprocessing import context
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
 from .forms import ProdutoForm
+from django.contrib.auth.models import User
+from users.models import Usuario
 # Create your views here.
 
 def index(request):
@@ -26,7 +28,11 @@ def product_list_detail(request, pk):
 
 def form_modelform(request):
     form = ProdutoForm()
-    print(form)
+    if request.user.is_anonymous:
+        return redirect('index')
+    if request.user.usuario.tipo == "Cliente":
+        return redirect('index')
+    
     if request.method == "POST":
         form = ProdutoForm(request.POST, request.FILES)
         if form.is_valid():
