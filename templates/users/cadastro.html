@@ -13,9 +13,12 @@
             {% csrf_token %}
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="email" name="email" placeholder="Email" required>
+            
             <select name="tipo">
                 <option value="Cliente">Cliente</option>
-                <option value="Gerente">Gerente</option>
+                {% if user.usuario.tipo == "Gerente" %}
+                    <option value="Gerente">Gerente</option>
+                {% endif %}
             </select>
             <span class="passwords">
                 <input type="password" name="password" placeholder="Digite sua senha" required>

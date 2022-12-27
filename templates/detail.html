@@ -57,11 +57,11 @@
                         </div>
                         <div class="options">
                             <div class="amount">
-                                <div class="minus">
+                                <div class="minus" onclick="back()">
                                     <img src="{% static 'img/icon-minus.svg' %}" alt="">
                                 </div>
-                                <span>0</span>
-                                <div class="plus">
+                                <input type="number" id="number" value="0">
+                                <div class="plus" onclick="next()">
                                     <img src="{% static 'img/icon-plus.svg' %}" alt="">
                                 </div>
                             </div>
@@ -72,4 +72,6 @@
             </div>
         </section>
     </main>
+
+    <script src="{% static 'js/detail.js' %}"></script>
 {% endblock %}

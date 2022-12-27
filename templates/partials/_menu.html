@@ -14,6 +14,10 @@
 
         <div class="right-side-menu">
             {% if user.is_authenticated %}
+                {% if user.usuario.tipo == "Gerente" %}
+                    <a class="button" href="{% url 'create_product' %}">Criar produto</a>
+                    <a class="button" href="{% url 'cadastro' %}">Criar funcionario</a>
+                {% endif %}
                 <a class="button" href="{% url 'products' %}">Produtos</a>
                 <a class="button" href="{% url 'index' %}">Página principal</a>
                 <a href=""><img src="{% static 'img/bag.svg' %}" alt=""></a>

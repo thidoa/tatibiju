@@ -5,8 +5,9 @@
     flex-direction: column;
     width: 50%;
     margin: 0 auto;
+    padding: 20px;
     justify-content: center;
-    height: calc(100vh - 86px);
+    /* height: calc(100vh - 86px); */
     gap: 20px;
     transition: .3s;
 }
@@ -34,7 +35,13 @@
     transition: .3s;
 }
 
-input {
+label {
+    width: 50%;
+    text-align: start;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+input, select, textarea {
     width: 50%;
     border: solid 1.5px #000;
     border-radius: 1rem;
@@ -50,7 +57,9 @@ input::placeholder {
     text-transform: uppercase;
 }
 
-input:focus {
+
+
+input:focus, textarea:focus {
     width: 60%;
     outline: none;
     border: 2px solid #e65996;

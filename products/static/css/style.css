@@ -85,6 +85,16 @@ nav ul li a {
     opacity: .3;
 }
 
+.indisponivel {
+    filter: blur(5px);
+    transition: .2s;
+}
+
+.indisponivel:hover {
+    filter: blur(0);
+    transition: .2s;
+}
+
 .section {
     height: auto;
 }
@@ -184,9 +194,12 @@ nav ul li a {
     border-radius: 10px;
 }
 
-.amount span {
+.amount input {
     font-weight: 700;
     font-size: 12px;
+    background: none;
+    border: none;
+    text-align: center;
 }
 
 .minus, .plus {

@@ -42,6 +42,8 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, "Login realizado com sucesso!")
                 return redirect('index')
+        else:
+            messages.error(request, 'Usuário inexistente ou campos incorretos!')
     return render(request, 'users/login.html')
 
 
@@ -50,7 +52,8 @@ def index(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('index')
+    messages.success(request, "Logout realizado com sucesso!")
+    return redirect('login')
 
 
 def campo_vazio(campo):
