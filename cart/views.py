@@ -1,10 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Cart
 
 def home(request):
-    cart_id = request.session.get("cart_id", None)
-    if cart_id is None:
-        print('create new cart')
-        request.session['cart_id'] = 12
-    else:
-        print('Cart ID exists')
+    if request.user.is_anonymous:
+        return redirect('index')
+    cart_obj = Cart.objects.new_or_get(request)
     return render(request, "cart/home.html")
