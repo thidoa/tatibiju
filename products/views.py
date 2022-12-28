@@ -5,6 +5,7 @@ from .forms import ProdutoForm
 from django.contrib.auth.models import User
 from users.models import Usuario
 from django.contrib import messages
+from django.conf import settings
 # Create your views here.
 
 def index(request):
