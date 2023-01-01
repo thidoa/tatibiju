@@ -9,17 +9,30 @@
 
     <h1>Carrinho</h1>
 
-    <div class="cards">
+    <div class="cards cards_cart">
         {% for produto in cart %}
             {% if produto.status %}
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{ produto.product.image.url }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ produto.product.titulo }}</h5>
-                        <p class="card-text">{{ produto.product.descricao }}</p>
                         <h5 class="card-title">R$ {{ produto.product.preco }}</h5>
-                        <h5 class="card-title">unidades: {{ produto.quantidade }}</h5>
-                        <a href="{% url 'remove_product_cart' produto.product.id %}" class="btn btn-danger"><img src="{% static 'img/icon-delete.svg' %}" alt=""></a>
+                        <form action="{%url 'update_cart' produto.product.id %}" class="form_cart" method="post">
+                            {% csrf_token %}
+                            <div class="options">
+                                <div class="amount">
+                                    <div class="minus" onclick="back()">
+                                        <img src="{% static 'img/icon-minus.svg' %}" alt="">
+                                    </div>
+                                    <input type="number" id="number" value="{{ produto.quantidade }}" name="quantity" min="1">
+                                    <div class="plus" onclick="next()">
+                                        <img src="{% static 'img/icon-plus.svg' %}" alt="">
+                                    </div>
+                                </div>
+                                <button type="submit" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Salvar carrinho</button>
+                            </div>
+                        </form>
+                        <a href="{% url 'remove_product_cart' produto.product.id %}" class="btn btn-danger button_submit"><img src="{% static 'img/icon-delete.svg' %}" alt=""></a>
                         <!-- <a href="{% url 'product_detail' produto.product.id %}" class="btn btn-primary">Comprar</a> -->
                         <!-- {% if user.usuario.tipo == "Gerente" %}
                             <a href="{% url 'update' obj.id %}" class="btn btn-info">Editar</a>
@@ -31,7 +44,8 @@
         {% endfor %}
     </div>
     <div class="total">
-        <p>total: {{ total }}</p>
+        <p>TOTAL: R${{ total }}</p>
     </div>
-   
+    <script src="{% static 'js/detail.js' %}"></script>
+
 {% endblock %}

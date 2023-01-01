@@ -20,6 +20,11 @@ def product_list(request):
 
 def product_detail(request, pk):
     instance = get_object_or_404(Product, pk = pk)
+
+    if request.user.usuario.tipo != "Gerente":
+        if instance.estoque <= 0:
+            messages.error(request, 'Produto indisponível')
+            return redirect('products')
     # img = Image_product.objects.all()
     # image = instance.image.all
     # print(dir(request.session))
