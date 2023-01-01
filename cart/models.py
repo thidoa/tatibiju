@@ -65,3 +65,10 @@ def pre_save_cart_receiver(sender, instance, *args, **kwargs):
   instance.total = instance.subtotal
 
 pre_save.connect(pre_save_cart_receiver, sender = Cart)
+
+
+class Carrinho(models.Model):
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+  quantidade = models.IntegerField(default=0)
+  status = models.BooleanField(default=True)

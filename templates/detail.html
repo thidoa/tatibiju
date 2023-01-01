@@ -55,18 +55,28 @@
                             <span class="price">RS {{ object.preco }}</span>
                             <!-- <span class="off">$250.00</span> -->
                         </div>
-                        <div class="options">
-                            <div class="amount">
-                                <div class="minus" onclick="back()">
-                                    <img src="{% static 'img/icon-minus.svg' %}" alt="">
+                        <form action="{%url 'add_cart' object.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="options">
+                                <div class="amount">
+                                    <div class="minus" onclick="back()">
+                                        <img src="{% static 'img/icon-minus.svg' %}" alt="">
+                                    </div>
+                                    <input type="number" id="number" value="1" name="quantity" min="1">
+                                    <div class="plus" onclick="next()">
+                                        <img src="{% static 'img/icon-plus.svg' %}" alt="">
+                                    </div>
                                 </div>
-                                <input type="number" id="number" value="0">
-                                <div class="plus" onclick="next()">
-                                    <img src="{% static 'img/icon-plus.svg' %}" alt="">
-                                </div>
+                                <button type="submit" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Adicionar no carrinho</button>
+                                <!-- {{ cart }}
+                                {% if object in cart.products.all %}
+                                    <a href="" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Produto no carrinho</a>
+                                {% else %}
+                                    <a href="" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Add to cart</a>
+                                {% endif %} -->
                             </div>
-                            <a href="" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Add to cart</a>
-                    </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

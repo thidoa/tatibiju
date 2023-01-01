@@ -8,6 +8,10 @@ function next() {
 }
 
 function back() {
-    index -= 1
+    index = parseInt(number.value)
+    if(index > 1) {
+        index -= 1
+    }
+    
     number.value = index
 }
