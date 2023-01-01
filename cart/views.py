@@ -70,6 +70,7 @@ def update_cart(request, pk):
         messages.success(request, 'Preciso está logado para adicionar no carrinho!')
         return redirect('login')
     
+    
     if request.method == "POST":
         quantity = request.POST['quantity']
         primeiro_produto = buscar_primeiro_produto(request, pk)
