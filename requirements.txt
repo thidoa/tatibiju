@@ -5,5 +5,6 @@ bootstrap4==0.1.0
 Django==4.0.6
 django-bootstrap4==22.3
 Pillow==9.3.0
+pytz==2022.7.1
 soupsieve==2.3.2.post1
 sqlparse==0.4.2

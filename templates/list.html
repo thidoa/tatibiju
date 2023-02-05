@@ -17,7 +17,7 @@
                     <h5 class="card-title">{{ obj.titulo }}</h5>
                     <p class="card-text">{{ obj.descricao }}</p>
                     <h5 class="card-title">R$ {{ obj.preco }}</h5>
-                    <a href="{% url 'product_detail' obj.id %}" class="btn btn-primary">Comprar</a>
+                    <a href="{% url 'product_detail' obj.id %}" class="btn btn-primary">Ver detalhes</a>
                     {% if user.usuario.tipo == "Gerente" %}
                         <a href="{% url 'update' obj.id %}" class="btn btn-info">Editar</a>
                         <a href="{% url 'delete' obj.id %}" class="btn btn-danger">Deletar</a>

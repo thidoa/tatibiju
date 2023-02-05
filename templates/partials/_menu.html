@@ -15,12 +15,16 @@
         <div class="right-side-menu">
             {% if user.is_authenticated %}
                 {% if user.usuario.tipo == "Gerente" %}
+                    <a class="button" href="{% url 'pedidos' %}">Pedidos</a>
                     <a class="button" href="{% url 'create_product' %}">Criar produto</a>
                     <a class="button" href="{% url 'cadastro' %}">Criar funcionario</a>
                 {% endif %}
                 <a class="button" href="{% url 'products' %}">Produtos</a>
                 <a class="button" href="{% url 'index' %}">Página principal</a>
-                <a href=""><img src="{% static 'img/bag.svg' %}" alt=""></a>
+                {% if user.usuario.tipo == "Cliente" %}
+                    <a class="button" href="{% url 'pedidos_cliente' %}">Pedidos</a>
+                {% endif %}
+                <a href="{% url 'carrinho' %}" class="a_tooltip" data-tooltip='Carrinho'><img src="{% static 'img/bag.svg' %}" alt="Carrinho"></a>
                 <a href="" class="icon-avatar"><img src="{% static 'img/icon-user.png' %}" alt=""></a>
                 <a href="{% url 'logout' %}"><img src="{% static 'img/icon-logout.png' %}" alt=""></a>
             {% else %}

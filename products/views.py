@@ -5,6 +5,7 @@ from .forms import ProdutoForm
 from django.contrib.auth.models import User
 from users.models import Usuario
 from django.contrib import messages
+from django.conf import settings
 # Create your views here.
 
 def index(request):
@@ -19,6 +20,11 @@ def product_list(request):
 
 def product_detail(request, pk):
     instance = get_object_or_404(Product, pk = pk)
+
+    if request.user.usuario.tipo != "Gerente":
+        if instance.estoque <= 0:
+            messages.error(request, 'Produto indisponível')
+            return redirect('products')
     # img = Image_product.objects.all()
     # image = instance.image.all
     # print(dir(request.session))
