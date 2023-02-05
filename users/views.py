@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User 
 from django.contrib import auth, messages
 from .models import Usuario
+from cart.models import ProdutoCarrinho
 
 def cadastro(request):
     if request.method == "POST":
@@ -55,6 +56,19 @@ def logout(request):
     messages.success(request, "Logout realizado com sucesso!")
     return redirect('login')
 
-
 def campo_vazio(campo):
     return not campo.strip()
+
+def pedidos(request):
+    users = Usuario.objects.exclude(carrinho=None).filter(carrinho__status_pedido="Em andamento")
+    total = 0
+    for user in users:
+        for carrinho in user.carrinho.all():
+            for produto in carrinho.produtos.all():
+                total +=  produto.product.preco
+
+    context = {
+        'usuarios': users,
+    }
+
+    return render(request, 'users/pedidos_gerente.html', context)

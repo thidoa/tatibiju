@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <title>Meus pedidos</title>
+</head>
+<body>
+    {% include 'partials/_alerts.html' %}
+
+    <h1>Meus pedidos</h1>
+    <div class="pedidos-cliente">
+        {% for pedido in pedidos %}
+            <div class="pedido">
+                <p>PEDIDO: <strong>{{ pedido.id }}</strong></p>
+                <a href="{% url 'pedido_cliente' pedido.id %}">Mais detalhes desse pedido <img  src="{% static 'img/share-icon.png' %}" alt=""></a>
+            </div>
+            <div class="info-pedido">
+                <div class="grupo">
+                    <p class="chave">Data e Hora</p>
+                    <p>{{ pedido.date_created }}</p>
+                    <!-- <p>14/01/2023 10:12:16</p> -->
+                </div>
+                <div class="grupo">
+                    <p class="chave">Valor Total</p>
+                    <p>R$ {{ pedido.total }}</p>
+                </div>
+                <div class="grupo">
+                    <p class="chave">Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
+                    <p>{{ pedido.status_pedido }}</p>
+                </div>
+            </div>
+            
+            
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/detail.js' %}"></script>
+
+{% endblock %}
