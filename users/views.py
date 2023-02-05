@@ -1,8 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import User 
 from django.contrib import auth, messages
 from .models import Usuario
-from cart.models import ProdutoCarrinho
+from cart.models import ProdutoCarrinho, Carrinho
 
 def cadastro(request):
     if request.method == "POST":
@@ -72,3 +72,18 @@ def pedidos(request):
     }
 
     return render(request, 'users/pedidos_gerente.html', context)
+
+def buscar(request):
+    if 'buscar' in request.GET:
+        id_a_buscar = request.GET['buscar']
+        if buscar:
+            pedido = Carrinho.objects.filter(id=id_a_buscar)
+            usuario = Usuario.objects.filter(carrinho__id=id_a_buscar)
+
+    print(pedido)
+
+    context = {
+        'usuario': usuario.first(),
+        'pedidos': pedido,
+    }
+    return render(request, 'buscar.html', context)

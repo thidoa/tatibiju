@@ -7,28 +7,27 @@
 <body>
     {% include 'partials/_alerts.html' %}
     {% include 'partials/_buscar.html' %}
-    
+
     <h1>Pedido</h1>
-    {% for user in usuarios %}
-        <div class="pedidos">
-            
-            <div class="cards cards_cart">
-                {% for carrinho in user.carrinho.all %}
+    {% if pedidos %}
+        {% for pedido in pedidos %}
+            <div class="pedidos">
+                <div class="cards cards_cart">
                     <div class="header-pedido gerente">
                         <div>
                             <p>Cliente:</p>
-                            <p class="rosa">{{ user }}</p>
+                            <p class="rosa">{{ usuario.username }}</p>
                         </div>
                         <div>
                             <p>N° do pedido:</p>
-                            <p class="rosa">{{ carrinho.id }}</p>
+                            <p class="rosa">{{ pedido.id }}</p>
                         </div>
                         <div>
                             <p>Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
-                            <p class="rosa">{{ carrinho.status_pedido }}</p>
+                            <p class="rosa">{{ pedido.status_pedido }}</p>
                         </div>
                     </div>
-                    {% for produto in carrinho.produtos.all %}
+                    {% for produto in pedido.produtos.all %}
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{ produto.product.image.url }}" alt="Card image cap">
                             <div class="card-body">
@@ -37,22 +36,23 @@
                                 <h5 class="card-title">Unidades: {{ produto.quantidade }}</h5>
                             </div>
                         </div>
-                        <input type="text" name="texto-{{ carrinho.id }}" id="texto-{{ carrinho.id }}" value="{{ produto.quantidade }} x {{ produto.product.titulo }}" hidden/>
+                        <input type="text" name="texto-{{ pedido.id }}" id="texto-{{ pedido.id }}" value="{{ produto.quantidade }} x {{ produto.product.titulo }}" hidden/>
                     {% endfor %}
                     <div class="total-pedidos">
-                        <p>TOTAL: R$ {{ carrinho.total }}</p>
-                        <input type="text" id="total-{{ carrinho.id }}" value="{{ carrinho.total }}" hidden/>
-                        <span class="button" onclick="copiarTexto({{ carrinho.id }})">
-                            <span id="copied-{{ carrinho.id }}">Copiar</span>
-                            <img id="copied_img-{{ carrinho.id }}" src="{% static 'img/icon_ok.png' %}" alt="">
+                        <p>TOTAL: R$ {{ pedido.total }}</p>
+                        <input type="text" id="total-{{ pedido.id }}" value="{{ pedido.total }}" hidden/>
+                        <span class="button" onclick="copiarTexto({{pedido.id}})">
+                            <span id="copied-{{ pedido.id }}">Copiar</span>
+                            <img id="copied_img-{{ pedido.id }}" src="{% static 'img/icon_ok.png' %}" alt="">
                         </span>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
+        {% endfor %}
+    {% else %}
+        <p>Pedido não encontrado</p>
+    {% endif %}
 
-    {% endfor %}
-    
     <script src="{% static 'js/detail.js' %}"></script>
 
 {% endblock %}

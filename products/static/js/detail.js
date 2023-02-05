@@ -23,9 +23,9 @@ function back(id) {
 }
 
 
-function copiarTexto() {
-    var textos = document.getElementsByName("texto")
-    var total = document.getElementById("total")
+function copiarTexto(pk) {
+    var textos = document.getElementsByName("texto-" + pk)
+    var total = document.getElementById("total-" + pk)
 
     var texto = ""
     for (var i = 0; i < textos.length; i++) {
@@ -35,8 +35,8 @@ function copiarTexto() {
     texto += "\nTotal: R$" + total.value + "."
     navigator.clipboard.writeText(texto);
 
-    var botao = document.getElementById('copied')
-    var img = document.getElementById('copied_img')
+    var botao = document.getElementById('copied-' + pk)
+    var img = document.getElementById('copied_img-' + pk)
 
     botao.innerHTML = "COPIADO "
     img.style.display = "block"
