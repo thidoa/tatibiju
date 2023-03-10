@@ -127,6 +127,17 @@ nav ul li a {
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.buscar_form select {
+    border: solid 1.5px #000;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #e65996;
+    border: 2px solid #e65996;
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .buscar_form input::placeholder {
     font-family: inherit;
     text-transform: uppercase;
@@ -416,6 +427,7 @@ section {
     margin: 0 auto;
     border: 1px solid #e65996;
     box-shadow: 0 0 3px #e65996;
+    margin: 30px auto;
 }
 
 .pedido {
@@ -521,7 +533,14 @@ section {
 .pedidos {
     width: 90%;
     margin: 0 auto;
-    border: 2px solid aqua;
+    /* border: 2px solid aqua; */
+    
+}
+
+.pedidos .cards {
+    margin: 50px auto;
+    border: 2px solid #e65996;
+    box-shadow: 0px 0 20px #e6599669;
     border-radius: 10px;
 }
 

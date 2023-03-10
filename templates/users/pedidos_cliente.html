@@ -8,8 +8,8 @@
     {% include 'partials/_alerts.html' %}
 
     <h1>Meus pedidos</h1>
-    <div class="pedidos-cliente">
-        {% for pedido in pedidos %}
+    {% for pedido in pedidos %}
+        <div class="pedidos-cliente">
             <div class="pedido">
                 <p>PEDIDO: <strong>{{ pedido.id }}</strong></p>
                 <a href="{% url 'pedido_cliente' pedido.id %}">Mais detalhes desse pedido <img  src="{% static 'img/share-icon.png' %}" alt=""></a>
@@ -31,8 +31,8 @@
             </div>
             
             
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
     <script src="{% static 'js/detail.js' %}"></script>
 
 {% endblock %}

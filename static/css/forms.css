@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
+    /* height: calc(100vh - 86px); */
+    gap: 20px;
+    transition: .3s;
+}
+
+.forms h1 {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.forms form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.passwords {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    gap: 10px;
+    transition: .3s;
+}
+
+label {
+    width: 50%;
+    text-align: start;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+input, select, textarea {
+    width: 50%;
+    border: solid 1.5px #000;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #e65996;
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input::placeholder {
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+
+
+input:focus, textarea:focus {
+    width: 60%;
+    outline: none;
+    border: 2px solid #e65996;
+    transition: .2s;
+}
+
+.buttons {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button {
+    border-radius: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    background: #e65996;
+    border: solid 2px #e65996;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: none;
+    color: #e65996;
+}
+
+a {
+    color: #000;
+    font-family: 'Nunito Sans', sans-serif;
+    text-transform: uppercase;
+    transition: .2s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #e65996;
+    transition: .2s;
+}
+
+@media (max-width: 1000px) {
+    .forms {
+        width: 100%;
+    }
+    
+    .passwords {
+        width: 80%;
+    }
+
+    input {
+        width: 80%;
+    }
+
+    input:focus {
+        width: 90%;
+    }
+
+    .buttons {
+        width: 80%;
+    }
+}

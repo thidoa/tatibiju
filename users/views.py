@@ -43,6 +43,8 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, "Login realizado com sucesso!")
                 return redirect('index')
+            else:
+                messages.error(request, 'Usuário ou senha incorretos!')
         else:
             messages.error(request, 'Usuário inexistente ou campos incorretos!')
     return render(request, 'users/login.html')
@@ -60,7 +62,8 @@ def campo_vazio(campo):
     return not campo.strip()
 
 def pedidos(request):
-    users = Usuario.objects.exclude(carrinho=None).filter(carrinho__status_pedido="Em andamento")
+    users = Usuario.objects.exclude(carrinho=None).filter(carrinho__status_pedido="Em andamento").distinct()
+    print(users)
     total = 0
     for user in users:
         for carrinho in user.carrinho.all():

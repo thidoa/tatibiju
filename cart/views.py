@@ -19,7 +19,7 @@ def add_cart(request, pk):
             messages.error(request, 'Não é possivel mandar a quantidade 0 de produtos para o carrinho')
             return redirect('products')
 
-        buscar_carrinho = Carrinho.objects.filter(usuario=usuario)#.filter(produtos__product=product).filter(produtos__status=True)
+        buscar_carrinho = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")#.filter(produtos__product=product).filter(produtos__status=True)
         #print(buscar_produto)
         cart = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")
         
@@ -104,7 +104,7 @@ def carrinho(request):
     usuario = get_object_or_404(Usuario, id=usuario_id)
 
     cart = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")
-
+    print(usuario.carrinho.all())
     total = 0
     for produto_carrinho in cart:
         for produto in produto_carrinho.produtos.all():

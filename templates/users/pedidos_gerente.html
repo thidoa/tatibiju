@@ -12,8 +12,8 @@
     {% for user in usuarios %}
         <div class="pedidos">
             
-            <div class="cards cards_cart">
-                {% for carrinho in user.carrinho.all %}
+            {% for carrinho in user.carrinho.all %}
+                <div class="cards cards_cart">
                     <div class="header-pedido gerente">
                         <div>
                             <p>Cliente:</p>
@@ -47,9 +47,9 @@
                             <img id="copied_img-{{ carrinho.id }}" src="{% static 'img/icon_ok.png' %}" alt="">
                         </span>
                     </div>
-                    {% endfor %}
                 </div>
-            </div>
+            {% endfor %}
+        </div>
 
     {% endfor %}
     

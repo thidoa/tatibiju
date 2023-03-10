@@ -11,4 +11,5 @@ urlpatterns = [
     path('products/<int:pk>', views.product_detail, name="product_detail"),
     path('update/<int:pk>', views.update, name="update"),
     path('delete/<int:pk>', views.delete, name="delete"),
+    path('buscar', views.buscar_produto, name="buscar_produto"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

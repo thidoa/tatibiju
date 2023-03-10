@@ -12,7 +12,11 @@ def index(request):
     return render(request, 'index.html')
 
 def product_list(request):
-    queryset = Product.objects.all()
+    if request.user.usuario.tipo != "Gerente":
+        queryset = Product.objects.all().order_by('-estoque')
+    else:
+        queryset = Product.objects.all().order_by('-date')
+
     context = {
         'object_list': queryset
     }
@@ -82,7 +86,25 @@ def delete(request, pk):
     products = Product.objects.all()
 
     context = {
-        'object_list': products
+        'object_list': products,
+    }
+
+    return render(request, 'list.html', context)
+
+def buscar_produto(request):
+    lista_produtos = Product.objects.order_by('-date')
+
+    if 'buscar' in request.GET:
+        nome_a_buscar = request.GET['buscar']
+        por = request.GET['select_pesquisa']
+        if buscar_produto:
+            if por == "Título":
+                lista_produtos = lista_produtos.filter(titulo__icontains = nome_a_buscar)
+            else:
+                lista_produtos = lista_produtos.filter(categoria__icontains = nome_a_buscar)
+
+    context = {
+        'object_list': lista_produtos,
     }
 
     return render(request, 'list.html', context)

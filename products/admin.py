@@ -7,4 +7,4 @@ from .models import Product
 
 @admin.register(Product)
 class ProdutoAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'descricao', 'preco')
+    list_display = ('titulo', 'descricao', 'preco', 'date')

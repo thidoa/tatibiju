@@ -1,11 +1,10 @@
 {% load static %}
 
-<form class="buscar_form" action="{% url 'buscar' %}">
+<form class="buscar_form" action="{% url 'buscar_produto' %}">
     <input class="buscar_pesquisa" type="text" name="buscar" placeholder="Digite o N° do pedido...">
     <select name="select_pesquisa">
-        <option value="Número">Número</option>
-        <option value="Em andamento">Em andamento</option>
-        <option value="Pagamento realizado">Pagamento realizado</option>
+        <option value="Título">Título</option>
+        <option value="Categoria">Categoria</option>
     </select>
     <button class="button" type="submit"><i aria-hidden="true">buscar</i></button>
 </form>
