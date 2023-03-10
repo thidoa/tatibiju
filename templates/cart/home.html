@@ -10,7 +10,9 @@
     <h1>Carrinho</h1>
 
     <div class="cards cards_cart">
-
+        {% if not cart|length > 0 %}
+            <p>Nenhum carrinho encontrado</p>
+        {% endif %}
         {% for produto_carrinho in cart %}
             {% for produto in produto_carrinho.produtos.all %}
                 {% if produto.status %}

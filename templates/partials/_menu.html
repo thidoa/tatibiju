@@ -23,8 +23,8 @@
                 <a class="button" href="{% url 'index' %}">Página principal</a>
                 {% if user.usuario.tipo == "Cliente" %}
                     <a class="button" href="{% url 'pedidos_cliente' %}">Pedidos</a>
+                    <a href="{% url 'carrinho' %}" class="a_tooltip" data-tooltip='Carrinho'><img src="{% static 'img/bag.svg' %}" alt="Carrinho"></a>
                 {% endif %}
-                <a href="{% url 'carrinho' %}" class="a_tooltip" data-tooltip='Carrinho'><img src="{% static 'img/bag.svg' %}" alt="Carrinho"></a>
                 <a href="" class="icon-avatar"><img src="{% static 'img/icon-user.png' %}" alt=""></a>
                 <a href="{% url 'logout' %}"><img src="{% static 'img/icon-logout.png' %}" alt=""></a>
             {% else %}
