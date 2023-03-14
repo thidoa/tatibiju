@@ -104,7 +104,7 @@ def carrinho(request):
     usuario = get_object_or_404(Usuario, id=usuario_id)
 
     cart = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")
-    print(usuario.carrinho.all())
+    # print(usuario.carrinho.all())
     total = 0
     for produto_carrinho in cart:
         for produto in produto_carrinho.produtos.all():

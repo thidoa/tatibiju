@@ -12,10 +12,11 @@ def index(request):
     return render(request, 'index.html')
 
 def product_list(request):
-    if request.user.usuario.tipo != "Gerente":
-        queryset = Product.objects.all().order_by('-estoque')
-    else:
-        queryset = Product.objects.all().order_by('-date')
+    queryset = Product.objects.all().order_by('-date')
+    if request.user.is_authenticated:
+        if request.user.usuario.tipo != "Gerente":
+            queryset = Product.objects.all().order_by('-estoque')
+
 
     context = {
         'object_list': queryset
@@ -24,7 +25,6 @@ def product_list(request):
 
 def product_detail(request, pk):
     instance = get_object_or_404(Product, pk = pk)
-
     if request.user.usuario.tipo != "Gerente":
         if instance.estoque <= 0:
             messages.error(request, 'Produto indisponível')
@@ -39,10 +39,11 @@ def product_detail(request, pk):
 
 def create_product(request):
     form = ProdutoForm()
-    if request.user.is_anonymous:
-        return redirect('index')
-    if request.user.usuario.tipo == "Cliente":
-        return redirect('index')
+    if not request.user.is_superuser:
+        if request.user.is_anonymous:
+            return redirect('index')
+        if request.user.usuario.tipo == "Cliente":
+            return redirect('index')
     
     if request.method == "POST":
         form = ProdutoForm(request.POST, request.FILES)

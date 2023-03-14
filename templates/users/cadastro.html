@@ -16,7 +16,7 @@
             
             <select name="tipo">
                 <option value="Cliente">Cliente</option>
-                {% if user.usuario.tipo == "Gerente" %}
+                {% if user.usuario.tipo == "Gerente" or user.is_superuser%}
                     <option value="Gerente">Gerente</option>
                 {% endif %}
             </select>
