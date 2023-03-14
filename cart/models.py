@@ -25,17 +25,13 @@ class ProdutoCarrinho (models.Model):
     return self.product.titulo
 
 
-def dataa():
-  tempo = datetime.now(timezone('America/Sao_Paulo'))
-  print(f'agora vai-------> {tempo}')
-  return tempo
 
 class Carrinho(models.Model):
   produtos = models.ManyToManyField(ProdutoCarrinho, blank=True, null=True)
 
   total = models.DecimalField(max_digits=100, decimal_places=2, default=0, blank=True, null=True)
   
-  date_created = models.DateTimeField(default=dataa(), blank=True, null=True)
+  date_created = models.DateTimeField(default=datetime.now(timezone('America/Sao_Paulo')), blank=True, null=True)
   date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
 
