@@ -62,8 +62,7 @@ def campo_vazio(campo):
     return not campo.strip()
 
 def pedidos(request):
-    users = Usuario.objects.exclude(carrinho=None).filter(carrinho__status_pedido="Em andamento").distinct()
-    print(users)
+    users = Usuario.objects.exclude(carrinho=None).exclude(carrinho__status_pedido="Enviado").distinct()
     total = 0
     for user in users:
         for carrinho in user.carrinho.all():
@@ -76,14 +75,26 @@ def pedidos(request):
 
     return render(request, 'users/pedidos_gerente.html', context)
 
+def mudarStatusPedido(request, id):
+    carrinho = get_object_or_404(Carrinho, id=id)
+
+    if request.method == "POST":
+        status = request.POST['statusPedido']
+        
+        carrinho.status_pedido = status
+        carrinho.save()
+
+    return redirect('pedidos')
+
 def buscar(request):
     if 'buscar' in request.GET:
         id_a_buscar = request.GET['buscar']
-        if buscar:
+        if id_a_buscar == '':
+            return redirect('pedidos')
+        elif buscar:
             pedido = Carrinho.objects.filter(id=id_a_buscar)
             usuario = Usuario.objects.filter(carrinho__id=id_a_buscar)
 
-    print(pedido)
 
     context = {
         'usuario': usuario.first(),

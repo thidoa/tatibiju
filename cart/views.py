@@ -181,7 +181,7 @@ def confirmar_pedido(request):
 
 def pedidos_cliente(request):
     user = get_object_or_404(Usuario, id=request.user.usuario.id)
-    pedidos = Carrinho.objects.filter(usuario=user).filter(status_pedido="Em andamento")
+    pedidos = Carrinho.objects.filter(usuario=user).exclude(status_pedido="Enviado")
 
     if len(pedidos) == 0:
         messages.success(request, 'Não tem pedidos!')

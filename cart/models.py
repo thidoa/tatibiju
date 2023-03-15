@@ -38,8 +38,13 @@ class Carrinho(models.Model):
   pedido = (
     ('Enviado', 'Enviado'),
     ('Em andamento', 'Em andamento'),
+    ('Aguardando pagamento', 'Aguardando pagamento'),
+    ('Pagamento realizado', 'Pagemento realizado'),
+    ('Em rota de entrega', 'Em rota de entrega'),
+    ('Finalizado', 'Finalizado'),
     ('Cancelado', 'Cancelado'),
-    ('Finalizado', 'Finalizado')
+    ('Reembolso', 'Reembolso'),
+    ('Devolução', 'Devolução')
   )
   status_pedido = models.CharField(choices=pedido, default="Enviado", max_length=100, blank=True, null=True)
 

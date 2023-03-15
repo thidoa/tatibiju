@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     <title>Meu pedido</title>
 </head>
 <body>
@@ -44,6 +44,20 @@
                         <span class="button" onclick="copiarTexto({{pedido.id}})">
                             <span id="copied-{{ pedido.id }}">Copiar</span>
                             <img id="copied_img-{{ pedido.id }}" src="{% static 'img/icon_ok.png' %}" alt="">
+                        </span>
+                        <span>
+                            <form action="{% url 'mudarStatusPedido' pedido.id %}" method="post">
+                                {% csrf_token %}
+                                <select name="statusPedido">
+                                    <option value="none" selected disabled hidden>{{ pedido.status_pedido }}</option>
+                                    <option value="Aguardando pagamento">Aguardando pagamento</option>
+                                    <option value="Pagamento realizado">Pagamento realizado</option>
+                                    <option value="Em rota de entrega">Em rota de entrega</option>
+                                    <option value="Finalizado">Finalizado</option>
+                                    <option value="Cancelado">Cancelado</option>
+                                </select>
+                                <button type="submit">Salvar</button>
+                            </form>
                         </span>
                     </div>
                 </div>

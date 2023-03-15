@@ -22,7 +22,6 @@ function back(id) {
     number.value = index
 }
 
-
 function copiarTexto(pk) {
     var textos = document.getElementsByName("texto-" + pk)
     var total = document.getElementById("total-" + pk)

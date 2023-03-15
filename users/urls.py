@@ -7,5 +7,6 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('index', views.index, name='index'),
     path('pedidos', views.pedidos, name='pedidos'),
-    path('buscar', views.buscar, name="buscar"),
+    path('buscar', views.buscar, name='buscar'),
+    path('mudarStatusPedido/<int:id>', views.mudarStatusPedido, name='mudarStatusPedido')
 ]
