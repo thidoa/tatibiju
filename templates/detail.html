@@ -54,6 +54,7 @@
                         <div class="prices">
                             <span class="price">RS {{ object.preco }}</span>
                             <!-- <span class="off">$250.00</span> -->
+                            <input type="text" id="estoque" value="{{ object.estoque }}" hidden > 
                         </div>
                         <form action="{%url 'add_cart' object.id %}" method="post">
                             {% csrf_token %}

@@ -31,7 +31,7 @@ class Carrinho(models.Model):
 
   total = models.DecimalField(max_digits=100, decimal_places=2, default=0, blank=True, null=True)
   
-  date_created = models.DateTimeField(default=datetime.now(timezone('America/Sao_Paulo')), blank=True, null=True)
+  date_created = models.DateTimeField(default=datetime.now(), blank=True, null=True)
   date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
 

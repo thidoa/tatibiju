@@ -14,10 +14,17 @@ def add_cart(request, pk):
     product = get_object_or_404(Product, id=pk)
 
     if request.method == "POST":
-        quantity = request.POST['quantity']
-        if int(quantity) < 1:
+        quantity = int(request.POST['quantity'])
+        if quantity < 1:
             messages.error(request, 'Não é possivel mandar a quantidade 0 de produtos para o carrinho')
             return redirect('products')
+    
+        if quantity > product.estoque:
+            messages.error(request, 'Quantidade de produtos indisponível!')
+            return redirect('products')
+        else:
+            product.estoque -= quantity
+            product.save()
 
         buscar_carrinho = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")#.filter(produtos__product=product).filter(produtos__status=True)
         #print(buscar_produto)
