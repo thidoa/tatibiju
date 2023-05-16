@@ -25,14 +25,15 @@
                                 {% csrf_token %}
                                 <div class="options">
                                     <div class="amount">
-                                        <div class="minus" id="minus" onclick="back({{produto.id}})">
+                                        <div class="minus" id="minus" onclick="back({{produto.id}}, 'cart')">
                                             <img src="{% static 'img/icon-minus.svg' %}" alt="">
                                         </div>
                                         <input type="number" id="number-{{produto.id}}" value="{{ produto.quantidade }}" name="quantity" min="1">
-                                        <div class="plus" onclick="next({{produto.id}})">
+                                        <div class="plus" onclick="next({{produto.id}}, 'cart')">
                                             <img src="{% static 'img/icon-plus.svg' %}" alt="">
                                         </div>
-                                        <!-- <input type="text" id="" value="{{ produto.product.estoque }}" hidden > -->
+                                        <input type="text" id="estoque-{{ produto.id }}" value="{{ produto.product.estoque }}" hidden >
+                                        <input type="text" id="reservei-{{ produto.id }}" value="{{ produto.quantidade }}" hidden > 
                                     </div>
                                     <button type="submit" class="button"><img src="{% static 'img/icon-cart.svg' %}" alt="">Salvar carrinho</button>
                                 </div>

@@ -5,33 +5,56 @@ function get_id(id) {
     return number
 }
 
-function next(id) {
-    var estoque = document.getElementById('estoque').value
+function next(id, type) {
     number = get_id(id)
-    console.log(number)
+    // console.log(number)
     var index = parseInt(number.value)
-    console.log(index)
+    // console.log(index)
     index += 1
-    if(index <= estoque) {
-        number.style.opacity = "1"
+    var reservados_cliente = parseInt(document.getElementById(`reservei-${id}`).value)
+    if(type == 'detail') {
+        
+        var estoque = parseInt(document.getElementById('estoque').value)
+        if(index <= estoque) {
+            number.style.opacity = "1"
+        } else {
+            number.style.opacity = "0.5"
+        }
     } else {
-        number.style.opacity = "0.5"
+        var estoque = parseInt(document.getElementById(`estoque-${id}`).value)
+        console.log(index + estoque + reservados_cliente)
+        if(index <= (estoque + reservados_cliente)) {
+            number.style.opacity = "1"
+        } else {
+            number.style.opacity = "0.5"
+        }
     }
     number.value = index
 }
 
-function back(id) {
-    var estoque = document.getElementById('estoque').value
+function back(id, type) {
     number = get_id(id)
     console.log(number)
     var index = parseInt(number.value)
     if(index > 1) {
         index -= 1
     }
-    if(index <= estoque) {
-        number.style.opacity = "1"
+    
+    var reservados_cliente = parseInt(document.getElementById(`reservei-${id}`).value)
+    if(type == 'detail') {
+        var estoque = parseInt(document.getElementById('estoque').value)
+        if(index <= estoque) {
+            number.style.opacity = "1"
+        } else {
+            number.style.opacity = "0.5"
+        }
     } else {
-        number.style.opacity = "0.5"
+        var estoque = parseInt(document.getElementById(`estoque-${id}`).value)
+        if(index <= (estoque + reservados_cliente)) {
+            number.style.opacity = "1"
+        } else {
+            number.style.opacity = "0.5"
+        }
     }
     
     number.value = index

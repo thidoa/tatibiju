@@ -23,6 +23,7 @@ def add_cart(request, pk):
             messages.error(request, 'Quantidade de produtos indisponível!')
             return redirect('products')
         else:
+            product.reservados += quantity
             product.estoque -= quantity
             product.save()
 
@@ -154,17 +155,28 @@ def remove_product_cart(request, pk, id_cart):
 
 def update_cart(request, pk, id_cart):
     if request.user.is_anonymous:
-        messages.success(request, 'Preciso está logado para adicionar no carrinho!')
+        messages.success(request, 'Precisa está logado para adicionar no carrinho!')
         return redirect('login')
     
     if request.method == "POST":
-        quantity = request.POST['quantity']
+        quantity = int(request.POST['quantity'])
         primeiro_produto = buscar_primeiro_produto(request, pk)
 
         produto_cadastrado = get_object_or_404(ProdutoCarrinho, id=primeiro_produto.id)
-        produto_cadastrado.quantidade = int(quantity)
-        produto_cadastrado.save()
-        calcula_total(request, id_cart)
+
+        if quantity > (produto_cadastrado.quantidade + produto_cadastrado.product.estoque):
+            messages.error(request, 'Quantidade de produtos indisponível!')
+            return redirect('products')
+        else:
+            produto_cadastrado.product.reservados += (quantity - produto_cadastrado.quantidade)
+            produto_cadastrado.product.save()
+            produto_cadastrado.product.estoque -= (quantity - produto_cadastrado.quantidade)
+            produto_cadastrado.product.save()
+
+            produto_cadastrado.quantidade = quantity
+            produto_cadastrado.save()
+            
+            calcula_total(request, id_cart)
         # carrinho = get_object_or_404(Carrinho, produtos=produto_cadastrado)
         # total = 0
         # for produto in carrinho.produtos.all():
