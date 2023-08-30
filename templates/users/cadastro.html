@@ -14,12 +14,17 @@
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="email" name="email" placeholder="Email" required>
             
-            <select name="tipo">
-                <option value="Cliente">Cliente</option>
-                {% if user.usuario.tipo == "Gerente" or user.is_superuser%}
+            {% if user.usuario.tipo == "Gerente" or user.is_superuser%}
+                <select name="tipo">
+                    <option value="Cliente">Cliente</option>
                     <option value="Gerente">Gerente</option>
-                {% endif %}
-            </select>
+                </select>
+            {% else %}
+                <select name="tipo" hidden>
+                    <option value="Cliente">Cliente</option>
+                </select>
+            {% endif %}
+            <input type="text" name="telefone" placeholder="Telefone">
             <span class="passwords">
                 <input type="password" name="password" placeholder="Digite sua senha" required>
                 <input type="password" name="verification_password" placeholder="Confirme a senha" required>

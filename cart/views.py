@@ -142,6 +142,10 @@ def remove_product_cart(request, pk, id_cart):
     cart = Carrinho.objects.filter(usuario=usuario).filter(status_pedido="Enviado")
     
     primeiro_produto = buscar_primeiro_produto(request, pk)
+
+    primeiro_produto.product.estoque += primeiro_produto.quantidade
+    primeiro_produto.product.reservados -= primeiro_produto.quantidade
+    primeiro_produto.product.save()
     
     cart.first().produtos.remove(primeiro_produto)
     

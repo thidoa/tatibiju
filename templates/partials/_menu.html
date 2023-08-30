@@ -22,7 +22,7 @@
                     <a class="button" href="{% url 'pedidos_cliente' %}">Pedidos</a>
                     <a href="{% url 'carrinho' %}" class="a_tooltip" data-tooltip='Carrinho'><img src="{% static 'img/bag.svg' %}" alt="Carrinho"></a>
                 {% endif %}
-                <a href="" class="icon-avatar"><img src="{% static 'img/icon-user.png' %}" alt=""></a>
+                <a href="{% url 'update_user' %}" class="icon-avatar"><img src="{% static 'img/icon-user.png' %}" alt=""></a>
                 <a href="{% url 'logout' %}"><img src="{% static 'img/icon-logout.png' %}" alt=""></a>
             {% else %}
                 <a class="button" href="{% url 'products' %}">Produtos</a>

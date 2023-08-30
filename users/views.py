@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from .models import Usuario
 from cart.models import ProdutoCarrinho, Carrinho
+from .forms import UserUpdateForm
 
 def cadastro(request):
     if request.method == "POST":
         nome = request.POST['nome']
         email = request.POST['email']
         tipo = request.POST['tipo']
+        telefone = request.POST['telefone']
         senha = request.POST['password']
         verificacao_senha = request.POST['verification_password']
 
@@ -21,7 +23,8 @@ def cadastro(request):
         if Usuario.objects.filter(email=email).exists():
             messages.error(request, 'Usuário já cadastrado!')
             return redirect('login')
-        user = Usuario.objects.create_user(username=nome, email=email, password=senha, tipo=tipo)
+        
+        user = Usuario.objects.create_user(username=nome, email=email, password=senha, tipo=tipo, telefone=telefone)
         user.save()
         messages.success(request, 'Usuário cadastrado com sucesso!')
         return redirect('login')
@@ -48,6 +51,31 @@ def login(request):
         else:
             messages.error(request, 'Usuário inexistente ou campos incorretos!')
     return render(request, 'users/login.html')
+
+def update_user(request):
+    if request.user.is_anonymous:
+        return redirect('index')
+    
+    user = get_object_or_404(Usuario, id=request.user.id)
+    
+    form = UserUpdateForm(dict(
+        username=user.username,
+        email=user.email,
+        telefone=user.telefone,
+    ))
+
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST)
+        if form.is_valid():
+            form.update_form(user.id)
+            messages.success(request, "Perfil atualizado com sucesso!")
+            return redirect('index')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'users/update_user.html', context)
 
 
 def index(request):
@@ -95,9 +123,15 @@ def buscar(request):
             pedido = Carrinho.objects.filter(id=id_a_buscar)
             usuario = Usuario.objects.filter(carrinho__id=id_a_buscar)
 
+            # teste_pedido = Carrinho.objects.filter(status_pedido="Em andamento")
+            # teste = Usuario.objects.filter(carrinho__status_pedido="Em andamento")
+
+        
+            # print(teste)
+
 
     context = {
-        'usuario': usuario.first(),
+        'usuario': usuario,
         'pedidos': pedido,
     }
     return render(request, 'buscar.html', context)
