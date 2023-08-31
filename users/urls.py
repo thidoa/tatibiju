@@ -9,5 +9,6 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('pedidos', views.pedidos, name='pedidos'),
     path('buscar', views.buscar, name='buscar'),
+    path('cancelamento/<int:id>', views.cancelamento, name='cancelamento'),
     path('mudarStatusPedido/<int:id>', views.mudarStatusPedido, name='mudarStatusPedido')
 ]

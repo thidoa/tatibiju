@@ -9,5 +9,5 @@ class ProdutoCarrinhoAdmin(admin.ModelAdmin):
 # admin.site.register(Carrinho)
 @admin.register(Carrinho)
 class CarrinhoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'total', 'status_pedido')
+    list_display = ('id', 'total', 'status_pedido', 'motivo_cancelamento')
     list_filter = ('status_pedido',)

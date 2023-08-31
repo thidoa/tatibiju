@@ -114,6 +114,23 @@ def mudarStatusPedido(request, id):
 
     return redirect('pedidos')
 
+def cancelamento(request, id):
+    pedido = get_object_or_404(Carrinho, id=id)
+    
+    if request.method == "POST":
+        motivo_cancelamento = request.POST['cancelamento']
+
+        pedido.motivo_cancelamento = motivo_cancelamento
+        pedido.status_pedido = "Cancelado"
+        pedido.save()
+        messages.success(request, 'Pedido cancelado com sucesso!')
+        return redirect('index')
+
+    context = {
+        'pedido': pedido,
+    }
+    return render(request, 'users/cancelamento.html', context)
+
 def buscar(request):
     if 'buscar' in request.GET:
         id_a_buscar = request.GET['buscar']

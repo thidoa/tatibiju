@@ -48,4 +48,5 @@ class Carrinho(models.Model):
   )
   status_pedido = models.CharField(choices=pedido, default="Enviado", max_length=100, blank=True, null=True)
 
+  motivo_cancelamento = models.TextField(max_length=400, blank=True, null=True)
 
