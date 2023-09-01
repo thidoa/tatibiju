@@ -35,7 +35,17 @@
                             <p>Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
                             <p class="rosa">{{ carrinho.status_pedido }}</p>
                         </div>
+                    
                     </div>
+                    {% if carrinho.motivo_cancelamento %}
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Motivo do cancelamento</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    {% endif %}
                     {% for produto in carrinho.produtos.all %}
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{ produto.product.image.url }}" alt="Card image cap">
@@ -54,6 +64,12 @@
                             <span id="copied-{{ carrinho.id }}">Copiar</span>
                             <img id="copied_img-{{ carrinho.id }}" src="{% static 'img/icon_ok.png' %}" alt="">
                         </span>
+
+                        {% if not carrinho.motivo_cancelamento %}
+                            <a class="button" href="">Cancelar</a>
+                        {% endif %}
+                        <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s. -->
+
                         <span>
                             <form action="{% url 'mudarStatusPedido' carrinho.id %}" method="post">
                                 {% csrf_token %}
@@ -63,7 +79,7 @@
                                     <option value="Pagamento realizado">Pagamento realizado</option>
                                     <option value="Em rota de entrega">Em rota de entrega</option>
                                     <option value="Finalizado">Finalizado</option>
-                                    <option value="Cancelado">Cancelado</option>
+                                    <!-- <option value="Cancelado">Cancelado</option> -->
                                 </select>
                                 <button type="submit">Salvar</button>
                             </form>

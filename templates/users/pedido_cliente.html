@@ -56,7 +56,9 @@
     </div>
     <div class="total">
         <p>TOTAL: R$ {{ pedido.total }}</p>
-        <a class="button" href="{% url 'cancelamento' pedido.id %}">Cancelar pedido</a>
+        {% if not pedido.motivo_cancelamento%}
+            <a class="button" href="{% url 'cancelamento' pedido.id %}">Cancelar pedido</a>
+        {% endif %}
         <a class="button" href="https://wa.me/5584991589245?text=Número+do+pedido:+{{ pedido.id }}" target="_blank">Verificar endereço e pagamento<img src="{% static 'img/icon-whatsapp.png'%}"></a>
     </div>
     <script src="{% static 'js/detail.js' %}"></script>
