@@ -1,8 +1,8 @@
 asgiref==3.5.2
 beautifulsoup4==4.11.1
-backports.zoneinfo==0.2.1;python_version<"3.9"
 bootstrap4==0.1.0
 Django==4.0.6
+django-bootstrap-v5==1.0.11
 django-bootstrap4==22.3
 Pillow==9.3.0
 pytz==2022.7.1

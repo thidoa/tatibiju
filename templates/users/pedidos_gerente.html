@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     <title>Meu pedido</title>
@@ -9,6 +10,7 @@
     {% include 'partials/_buscar.html' %}
     
     <h1>Pedido</h1>
+      
     {% for user in usuarios %}
         <div class="pedidos">
             
@@ -31,21 +33,21 @@
                             <p>N° do pedido:</p>
                             <p class="rosa">{{ carrinho.id }}</p>
                         </div>
-                        <div>
-                            <p>Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
-                            <p class="rosa">{{ carrinho.status_pedido }}</p>
-                        </div>
-                    
-                    </div>
-                    {% if carrinho.motivo_cancelamento %}
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Motivo do cancelamento</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        
+                        {% if carrinho.motivo_cancelamento %}
+                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="{{ carrinho.motivo_cancelamento }}">
+                                <div>
+                                    <p>Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
+                                    <p class="rosa">{{ carrinho.status_pedido }}</p>
+                                </div>
+                            </span>
+                        {% else %}
+                            <div>
+                                <p>Status <img class="icon-info" src="{% static 'img/info-icon.png' %}" alt=""></p>
+                                <p class="rosa">{{ carrinho.status_pedido }}</p>
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                     {% for produto in carrinho.produtos.all %}
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{ produto.product.image.url }}" alt="Card image cap">
@@ -66,9 +68,8 @@
                         </span>
 
                         {% if not carrinho.motivo_cancelamento %}
-                            <a class="button" href="">Cancelar</a>
+                            <a class="button" href="{% url 'cancelamento' carrinho.id %}">Cancelar pedido</a>
                         {% endif %}
-                        <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s. -->
 
                         <span>
                             <form action="{% url 'mudarStatusPedido' carrinho.id %}" method="post">
@@ -90,8 +91,11 @@
         </div>
 
     {% endfor %}
-    
+    {% bootstrap_javascript %}
     <script src="{% static 'js/detail.js' %}"></script>
-
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
 {% endblock %}
     
