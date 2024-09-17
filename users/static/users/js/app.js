@@ -1,6 +1,9 @@
-function showPassword() {
-    const password_input = document.getElementById('password')
-    const password_button = document.getElementById('button_password')
+function showPassword(e) {
+    const field_password = e.parentNode
+
+    const password_input = field_password.querySelector('input')
+    const password_button = field_password.querySelector('.visibility')
+
     const type = password_input.getAttribute('type') === 'password' ? 'text' : 'password'
 
     const type_icone = type === 'password' ? 'visibility' : 'visibility_off'

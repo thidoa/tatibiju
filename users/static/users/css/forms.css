@@ -90,6 +90,25 @@ form div .visibility {
     cursor: pointer;
 }
 
+/* form div .type_client {
+    width: ;
+} */
+
+form .select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 15px;
+    width: 90%;
+    border: solid 1px var(--global-main-color);
+    border-radius: 10px;
+    color: var(--global-main-color);
+    background: #F3F3F3;
+    overflow: hidden;
+}
+
 form button {
     width: 90%;
     padding: 15px;

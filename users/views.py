@@ -29,7 +29,7 @@ def cadastro(request):
         messages.success(request, 'Usuário cadastrado com sucesso!')
         return redirect('login')
     else:
-        return render(request, 'users/cadastro.html')
+        return render(request, 'users/register.html')
 
 def login(request):
     if request.method == "POST":
