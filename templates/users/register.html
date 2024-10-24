@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'users/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+    <title>Cadastro</title>
+</head>
+<body>
+    {% include 'partials/_alerts.html' %}
+    <main>
+        <div class="header_logo">
+            <img src="{% static 'users/img/simbolo.png' %}" alt="">
+        </div>
+        <div class="formulario r">
+            <h1 class="title_register">Crie uma conta</h1>
+            <section class="register">
+                <form action="{% url 'cadastro' %}" method="post">
+                    {% csrf_token %}
+                    <div class="nome">
+                        <span class="material-symbols-outlined">person</span>
+                        <input type="text" name="nome" placeholder="Nome">
+                    </div>
+                    <div class="email">
+                        <span class="material-symbols-outlined">email</span>
+                        <input type="email" name="email" placeholder="Email">
+                    </div>
+
+                    <!-- <div class="type_client"> -->
+                        {% if user.usuario.tipo == "Gerente" or user.is_superuser%}
+                            <select name="tipo" class="select">
+                                <option value="Cliente">Cliente</option>
+                                <option value="Gerente">Gerente</option>
+                            </select>
+                        {% else %}
+                            <select name="tipo" hidden>
+                                <option value="Cliente">Cliente</option>
+                            </select>
+                        {% endif %}
+                    <!-- </div> -->
+
+                    <div class="telefone">
+                        <span class="material-symbols-outlined">call</span>
+                        <input type="text" name="telefone" placeholder="Telefone">
+                    </div>
+                    <div class="password">
+                        <span class="material-symbols-outlined">lock</span>
+                        <input type="password" name="password" placeholder="Senha">
+                        <span onclick="showPassword(this)" class="visibility material-symbols-outlined">visibility</span>
+                    </div>
+                    <div class="password">
+                        <span class="material-symbols-outlined">lock</span>
+                        <input type="password" name="verification_password" placeholder="Confirmação de senha">
+                        <span onclick="showPassword(this)" class="visibility material-symbols-outlined">visibility</span>
+                    </div>
+                    <button type="submit">Cadastre-se</button>
+                </form>
+                <div class="link">
+                    Ja tem uma conta? <a href="{% url 'login' %}">Login</a>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <script src="{% static 'users/js/app.js' %}"></script>
+</body>
+</html>

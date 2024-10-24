@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+
+form div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    border: solid 1px var(--global-main-color);
+    border-radius: 10px;
+    color: var(--global-main-color);
+    background: #F3F3F3;
+    overflow: hidden;
+}
+
+form .email,
+form .nome,
+form .telefone {
+    position: relative;
+}
+
+form .email input,
+form .nome input,
+form .telefone input {
+    padding-left: 44px;
+    padding-right: 24px;
+}
+
+.email .material-symbols-outlined,
+.nome .material-symbols-outlined,
+.telefone .material-symbols-outlined{
+    position: absolute;
+    left: 5px;
+}
+
+form .password {
+    position: relative;
+}
+
+.password input {
+    padding: 15px 44px;
+}
+
+.password .material-symbols-outlined {
+    position: absolute;
+}
+
+.password .material-symbols-outlined:first-child {
+    left: 5px;
+}
+
+.password .material-symbols-outlined:last-child {
+    right: 5px;
+}
+
+form div input {
+    flex: 1;
+    border: none;
+    width: 100%;
+    background: none;
+    padding: 15px 0;
+    margin: 0;
+}
+
+form div input::placeholder {
+    color: var(--global-main-color);
+}
+
+div input:focus {
+    border: solid 2px var(--global-main-color);
+    border-radius: 10px;
+    outline: none;
+}
+
+form div .material-symbols-outlined {
+    width: 24px;
+    /* padding: 5px; */
+    margin: 0 5px;
+}
+
+form div .visibility {
+    cursor: pointer;
+}
+
+/* form div .type_client {
+    width: ;
+} */
+
+form .select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 15px;
+    width: 90%;
+    border: solid 1px var(--global-main-color);
+    border-radius: 10px;
+    color: var(--global-main-color);
+    background: #F3F3F3;
+    overflow: hidden;
+}
+
+form button {
+    width: 90%;
+    padding: 15px;
+    background: var(--global-main-color);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    border-radius: 5px;
+    margin: 30px;
+}
+

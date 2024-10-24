@@ -1,23 +1,48 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %} -->
 {% load static %}
-{% block content %}
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<!-- {% block content %} -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'users/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
     <title>Login</title>
 </head>
 <body>
     {% include 'partials/_alerts.html' %}
-    <div class="forms">
-        <h1>Login</h1>
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Digite sua senha" required>
-            <div class="buttons">
-                <button type="submit">Logar</button>
-                <a href="{% url 'cadastro' %}">Criar conta</a>
-            </div>
-        </form>
-    </div>
+    <main>
+        <div class="header_logo">
+            <img src="{% static 'users/img/simbolo.png' %}" alt="">
+        </div>
+        <div class="formulario">
+            <h1 class="title_login">Bem vindo a TATY VERSÁTIL</h1>
+            <section class="login">
+                <form id="form" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="email">
+                        <span class="material-symbols-outlined">person</span>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="password">
+                        <span class="material-symbols-outlined">lock</span>
+                        <input id="password" name="password" type="password" placeholder="Senha" required>
+                        <span id="button_password" class="visibility material-symbols-outlined" onclick="showPassword(this)">visibility</span>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="link">
+                    Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a>
+                </div>
+            </section>
+        </div>
+    </main>
 
+    <script src="{% static 'users/js/app.js' %}"></script>
+</body>
+</html>
 
-{% endblock %}
+<!-- {% endblock %} -->
